@@ -5,14 +5,14 @@
 ### TECH STACK 
 
 #### Server
-##### Node
-##### TypeScript
-##### Postgress
-##### Express
-##### GraphQL
-##### Prisma
+ Node
+ TypeScript
+ Postgress
+ Express
+ GraphQL
+ Prisma
 
 #### Client 
-##### React
-##### GraphQL Client
-##### TypeScript
+ React
+ GraphQL Client
+ TypeScript
