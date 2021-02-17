@@ -20,8 +20,9 @@ export default function Users() {
     return (
         <div>
             
-            data.users.map{
-                (user: User) => {<p>{user.name}</p>}
+            {data.users.map(
+                (user: User) => (<p>{user.name}</p>)
+            )
             }
             
         </div>

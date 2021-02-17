@@ -1,17 +1,56 @@
 import React from 'react';
 import './App.css';
-import  {ApolloClient, ApolloProvider, InMemoryCache} from "@apollo/client"
+import  {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from "@apollo/client"
+import Users from './Users';
+import { BrowserRouter as Router, Route,Switch} from "react-router-dom";
+import Landing from './components/Landing';
+import {setContext} from 'apollo-link-context';
+import SignUp from './pages/SignUp';
+
+const httpLink = new HttpLink({
+  uri : "http://localhost:4000",
+})
+
+const authLink = setContext(async (req,{ headers })=>{
+  const token = localStorage.getItem('token')
+
+   return {
+     ...headers,
+     headers:{
+       Authorization: token ? `Bearer ${token}`: null
+     }
+   }
+})
+ 
+const link = authLink.concat(httpLink as any);
 
  const client = new ApolloClient({
-   uri: "http://localhost:4000",
+   link :(link as any),
    cache: new InMemoryCache(),
  })
+
+
 function App() {
   return (
     <ApolloProvider client ={client}>
-  <div>
-    Hello this is started
-  </div> 
+      <Router>
+        <Switch>
+
+
+          {/* < Route path = '/landing'>
+            <Landing></Landing>
+          </Route> */}
+
+          < Route path = '/signUp'>
+            <SignUp></SignUp>
+          </Route>
+         
+          <Route path= '/'>
+             <Users/>
+          </Route>
+
+        </Switch>
+      </Router>
   </ApolloProvider>
   );
 }
