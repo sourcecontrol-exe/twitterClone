@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route,Switch} from "react-router-dom";
 import Landing from './components/Landing';
 import {setContext} from 'apollo-link-context';
 import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+
 
 const httpLink = new HttpLink({
   uri : "http://localhost:4000",
@@ -37,16 +39,20 @@ function App() {
         <Switch>
 
 
-          {/* < Route path = '/landing'>
+          < Route path = '/landing'>
             <Landing></Landing>
-          </Route> */}
+          </Route>
+
+          < Route path = '/login'>
+            <Login></Login>
+          </Route>
 
           < Route path = '/signUp'>
             <SignUp></SignUp>
           </Route>
          
-          <Route path= '/'>
-             <Users/>
+          <Route  exact path= '/'>
+             <div> hello world</div>
           </Route>
 
         </Switch>
