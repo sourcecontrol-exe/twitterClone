@@ -1,5 +1,10 @@
-export * from './AuthPayload'
-export * from './Mutation'
-export * from './Post'
-export * from './Query'
-export * from './User'
+export * from "./AuthPayload"
+export * from "./Comment"
+export * from "./Following"
+export * from "./LikedTweet"
+export * from "./Mutation"
+export * from "./Profile"
+export * from "./Query"
+export * from "./Tweet"
+export * from "./User"
+

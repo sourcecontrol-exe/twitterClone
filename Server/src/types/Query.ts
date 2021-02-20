@@ -23,51 +23,38 @@ export const Query = queryType({
       },
     })
 
+    t.list.field("tweets", {
+			type: "Tweet",
+			resolve: (parent, args, ctx) => {
+				return ctx.prisma.tweet.findMany()
+			}
+		})
 
-    t.list.field('feed', {
-      type: 'Post',
-      resolve: (parent, args, ctx) => {
-        return ctx.prisma.post.findMany({
-          where: { published: true },
-        })
-      },
-    })
+    t.field("tweet", {
+			type: "Tweet",
+			nullable: true,
+			args: { id: intArg() },
+			resolve: (parent, { id }, ctx) => {
+				return ctx.prisma.tweet.findOne({
+					where: {
+						id: Number(id)
+					}
+				})
+			}
+		})
 
-    t.list.field('filterPosts', {
-      type: 'Post',
-      args: {
-        searchString: nullable(stringArg()),
-      },
-      resolve: (parent, { searchString }, ctx) => {
-        return ctx.prisma.post.findMany({
-          where: {
-            OR: [
-              {
-                title: {
-                  contains: searchString || undefined,
-                },
-              },
-              {
-                content: {
-                  contains: searchString ?? undefined,
-                },
-              },
-            ],
-          },
-        })
-      },
-    })
-
-    t.nullable.field('post', {
-      type: 'Post',
-      args: { id: intArg() },
-      resolve: (parent, { id }, ctx) => {
-        return ctx.prisma.post.findUnique({
-          where: {
-            id: Number(id),
-          },
-        })
-      },
-    })
-  },
+    t.field("user", {
+			type: "User",
+			nullable: true,
+			args: { id: intArg() },
+			resolve: (parent, { id }, ctx) => {
+				return ctx.prisma.user.findOne({
+					where: {
+						id: Number(id)
+					}
+				})
+			}
+		})
+   
+   },
 })

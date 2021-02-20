@@ -22,12 +22,12 @@ const rules = {
 export const permissions = shield({
   Query: {
     me: rules.isAuthenticatedUser,
-    filterPosts: rules.isAuthenticatedUser,
-    post: rules.isAuthenticatedUser,
+    // filterPosts: rules.isAuthenticatedUser,
+     tweet: rules.isAuthenticatedUser,
   },
   Mutation: {
-    createDraft: rules.isAuthenticatedUser,
-    deletePost: rules.isPostOwner,
-    publish: rules.isPostOwner,
+    // createDraft: rules.isAuthenticatedUser,
+    // deletePost: rules.isPostOwner,
+    // publish: rules.isPostOwner,
   },
 })
