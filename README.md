@@ -1,4 +1,4 @@
-# TWITTER CLONE
+# TWITTER CLONE 🚀🚀🚀
 
 ## Hey there this is my attemp to build  a twitter clone 
 
