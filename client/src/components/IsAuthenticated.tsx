@@ -1,21 +1,24 @@
-import {gql, useQuery} from "@apollo/client"
-import React from 'react';
+import { gql, useQuery } from "@apollo/client"
+import React from "react"
 import { Redirect } from "react-router-dom"
 
 
-export const IS_LOGGED_IN =gql `
-{
-    me{
-        id
+export const IS_LOGGED_IN = gql`
+  {
+    me {
+      id
+   
     }
-}`
+  }
+`
 
-interface Props{
+interface Props {
     children?: React.ReactNode
 }
 
-function IsAuthenticated({children}: Props){
-    const { loading, error, data} = useQuery(IS_LOGGED_IN);
+
+function IsAuthenticated({ children }: Props) {
+    const { loading, error, data } = useQuery(IS_LOGGED_IN)
 
     if (loading) return <p>Loading...</p>
     if (error)
@@ -25,6 +28,8 @@ function IsAuthenticated({children}: Props){
         return <Redirect to={{ pathname: "/landing" }}
         />
     }
-     return <> {children}</>
+
+    return <>{children}</>
 }
- export default IsAuthenticated
+
+export default IsAuthenticated

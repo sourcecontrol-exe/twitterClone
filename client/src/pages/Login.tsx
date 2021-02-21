@@ -1,48 +1,43 @@
-import React from 'react'
-import {gql,useMutation} from "@apollo/client"
-import {ErrorMessage, Field, Form, Formik} from "formik";
-import * as Yup from "yup";
-import {Link,useHistory} from "react-router-dom";
-import TwitterLogo from "../styles/assets/twitter_logo.png"
+import { gql, useMutation } from "@apollo/client"
+import { ErrorMessage, Field, Form, Formik } from "formik"
+import React from "react"
+import { Link, useHistory } from "react-router-dom"
+import * as Yup from "yup"
+import TwitterLogo from "../styles/assets/twitter-logo.png"
 import "../styles/login.css"
 
-const LOGIN_MUTATION= gql`
+const LOGIN_MUTATION = gql`
 	mutation login($email: String!, $password: String!) {
-		signup(email: $email, password: $password) {
+		login(email: $email, password: $password) {
 			token
 		}
 	}
 `
 
-interface LoginValeus {
-	email: string,
+interface LoginValues {
+	email: string
 	password: string
 }
 
 function Login() {
-    const history = useHistory();
-    const [login,{data}]= useMutation(LOGIN_MUTATION);
-    
-    const initialValues: LoginValeus = {
+	const history = useHistory()
+	const [ login, { data } ] = useMutation(LOGIN_MUTATION)
+
+	const initialValues: LoginValues = {
 		email: "",
-		password: "",
+		password: ""
 	}
 
-    const validationSchema = Yup.object({
+	const validationSchema = Yup.object({
 		email: Yup.string().email("Invalid email address").required("Email Required"),
-		password: Yup.string().max(20, "Must be 20 characters or less").required("Password Required"),
+		password: Yup.string().max(20, "Must be 20 characters or less").required("Password Required")
 	})
 
-    
-    return (
-        <div>
-			<img src ={TwitterLogo}
-			alt = "logo"
-			style = {{width:"50px"}}
-			className ="logo"
-			/>
-            <h1>LOGIN PAGE TO FAKE TWITTER</h1>
-            <Formik
+	return (
+		<div className="container">
+			<img src={TwitterLogo} alt="logo" style={{ width: "50px" }} className="logo" />
+			<h3>Log in to Fake Twitter</h3>
+			<Formik
 				initialValues={initialValues}
 				validationSchema={validationSchema}
 				onSubmit={async (values, { setSubmitting }) => {
@@ -50,27 +45,29 @@ function Login() {
 					const response = await login({
 						variables: values
 					})
-					localStorage.setItem("token", response.data.signup.token)
+					localStorage.setItem("token", response.data.login.token)
 					setSubmitting(false)
 					history.push("/")
 				}}
 			>
-                <Form>
+				<Form>
 					<Field name="email" type="text" placeholder="Email" />
 					<ErrorMessage name="email" component={"div"} />
-					
+
 					<Field name="password" type="password" placeholder="Password" />
 					<ErrorMessage name="password" component={"div"} />
+
 					<button type="submit" className="login-button">
 						<span>Login</span>
 					</button>
 				</Form>
-            </Formik>
-            <div className="register">
-				<h4>Dont have an account?</h4>
-				<Link to="/signup">Register</Link>
+			</Formik>
+			<div className="register">
+				<h4>Don't have an account?</h4>
+				<Link to="/signup">Sign up</Link>
 			</div>
-        </div>
-    )
+		</div>
+	)
 }
-  export default Login
+
+export default Login
