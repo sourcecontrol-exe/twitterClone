@@ -41,7 +41,7 @@ function Login() {
 			style = {{width:"50px"}}
 			className ="logo"
 			/>
-            <h1>LOGIN PAGE FO FAKE TWITTER</h1>
+            <h1>LOGIN PAGE TO FAKE TWITTER</h1>
             <Formik
 				initialValues={initialValues}
 				validationSchema={validationSchema}
@@ -59,20 +59,18 @@ function Login() {
 					<Field name="email" type="text" placeholder="Email" />
 					<ErrorMessage name="email" component={"div"} />
 					
-					<Field name="password" type="password" placeholder="Password" />n
+					<Field name="password" type="password" placeholder="Password" />
 					<ErrorMessage name="password" component={"div"} />
-					
 					<button type="submit" className="login-button">
 						<span>Login</span>
 					</button>
 				</Form>
             </Formik>
             <div className="register">
-				<h4>Dont have an account? </h4>
+				<h4>Dont have an account?</h4>
 				<Link to="/signup">Register</Link>
 			</div>
         </div>
-		
     )
 }
   export default Login

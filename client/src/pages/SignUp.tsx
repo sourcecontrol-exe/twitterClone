@@ -53,8 +53,7 @@ function SignUp() {
 					localStorage.setItem("token", response.data.signup.token)
 					setSubmitting(false)
 					history.push("/")
-				}}
-			>
+				}}>
                 <Form>
 					<Field name="email" type="text" placeholder="Email" />
 					<ErrorMessage name="email" component={"div"} />

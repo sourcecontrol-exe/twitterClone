@@ -135,7 +135,7 @@ export const Mutation = mutationType({
     t.field("deleteLike", {
 			type: "LikedTweet",
 			args: {
-				id: intArg({ nullable: false })
+				id: intArg({ })
 			},
 			resolve: (parent, { id }, ctx) => {
 				const userId = getUserId(ctx)
@@ -149,8 +149,8 @@ export const Mutation = mutationType({
     t.field("createReply", {
 			type: "Comment",
 			args: {
-				content: stringArg({ nullable: false }),
-				id: intArg({ nullable: false }),
+				content: stringArg({}),
+				id: intArg({}),
 				commentId: intArg()
 			},
 			resolve: (parent, { content, id, commentId }, ctx) => {
@@ -169,9 +169,9 @@ export const Mutation = mutationType({
     t.field("follow", {
 			type: "Following",
 			args: {
-				name: stringArg({ nullable: false }),
-				followId: intArg({ nullable: false }),
-				avatar: stringArg({ nullable: false })
+				name: stringArg({ }),
+				followId: intArg({ }),
+				avatar: stringArg({ })
 			},
 			resolve: (parent, { name, followId, avatar }, ctx) => {
 				const userId = getUserId(ctx)
@@ -190,7 +190,7 @@ export const Mutation = mutationType({
     t.field("deleteFollow", {
 			type: "Following",
 			args: {
-				id: intArg({ nullable: false })
+				id: intArg({ })
 			},
 			resolve: (parent, { id }, ctx) => {
 				const userId = getUserId(ctx)

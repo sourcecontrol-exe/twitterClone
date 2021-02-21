@@ -32,7 +32,6 @@ export const Query = queryType({
 
     t.field("tweet", {
 			type: "Tweet",
-			nullable: true,
 			args: { id: intArg() },
 			resolve: (parent, { id }, ctx) => {
 				return ctx.prisma.tweet.findOne({
@@ -45,7 +44,6 @@ export const Query = queryType({
 
     t.field("user", {
 			type: "User",
-			nullable: true,
 			args: { id: intArg() },
 			resolve: (parent, { id }, ctx) => {
 				return ctx.prisma.user.findOne({
