@@ -1,6 +1,6 @@
 # TWITTER CLONE 🚀🚀🚀
 
-## Hey there this is my attemp to build  a twitter clone 
+## Hey there this is my attempt to build  a twitter clone 
 
 ### TECH STACK 
 
